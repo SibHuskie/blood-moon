@@ -16,7 +16,6 @@ async def on_ready():
     print(client.user.id)
     print("---------------")
     await client.change_presence(game=discord.Game(name='with Huskie'))
-client.run(os.environ['BOT_TOKEN'])
 
 # %tempmute <user> <time> [reason]
 @client.command(pass_context=True)
@@ -62,3 +61,4 @@ async def tempmute(ctx, userName: discord.Member = None, time: int = None, *, ar
     else:
         msg.add_field(name=":warning: ", value="`This command can only be used by staff!`")
         await client.say(embed=msg)
+client.run(os.environ['BOT_TOKEN'])
