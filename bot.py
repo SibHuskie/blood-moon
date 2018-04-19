@@ -45,7 +45,6 @@ async def tempmute(ctx, userName: discord.Member = None, time: int = None, *, ar
             time2 = time * 60
             if args == None:
                 await client.add_roles(userName, punished_role)
-                await client.remove_roles(userName, member_role)
                 msg.add_field(name=":speak_no_evil: Mute / Unmute :speak_no_evil:", value="`{} has been punished by {}! for {} minute(s)!`\n`Reason: ?`".format(userName.display_name, author.display_name, time))
                 await client.say(embed=msg)
                 await asyncio.sleep(float(time2))
