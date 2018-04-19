@@ -7,7 +7,7 @@ import time
 import os
 
 client = commands.Bot(command_prefix="%")
-footer_text = ":new_moon: Eclipse :new_moon:"
+footer_text = "Eclipse"
 
 @client.event
 async def on_ready():
@@ -21,13 +21,13 @@ async def on_ready():
 @client.command(pass_context=True)
 async def tempmute(ctx, userName: discord.Member = None, time: int = None, *, args = None):
     punished_role = discord.utils.get(ctx.message.server.roles, name='Muted')
-    helper_role = discord.utils.get(ctx.message.server.roles, name='Helpers')
-    mod_role = discord.utils.get(ctx.message.server.roles, name='Moderators')
-    admin_role = discord.utils.get(ctx.message.server.roles, name='Administrator')
-    manager_role = discord.utils.get(ctx.message.server.roles, name='Co Owner')
-    owner_role = discord.utils.get(ctx.message.server.roles, name='Owner')
+    helper_role = discord.utils.get(ctx.message.server.roles, name='CHAT MODS')
+    mod_role = discord.utils.get(ctx.message.server.roles, name='MOD')
+    admin_role = discord.utils.get(ctx.message.server.roles, name='ADMIN')
+    manager_role = discord.utils.get(ctx.message.server.roles, name='CO-FOUNDERS')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='FOUNDERS')
     author = ctx.message.author
-    msg = discord.Embed(colour=0x871485, description= "")
+    msg = discord.Embed(colour=0x9b0019, description= "")
     msg.title = ""
     msg.set_footer(text=footer_text)
     if helper_role in author.roles or mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
