@@ -318,16 +318,4 @@ async def warn(ctx, userName: discord.Member = None, *, args = None):
     else:
         msg.add_field(name=":octagonal_sign: ", value="`This command can only be used by staff!`")
         await client.say(embed=msg)
-        
-@client.event
-async def on_member_join(member):
-    print("Recognised that a member called " + member.name + " joined")
-    await client.send_message(member, newUserMessage)
-    print("Sent message to " + member.name)
-    
-newUserMessage = """ # customise this to the message you want to send new users
-Welcome!
-Test
-Test
-
 client.run(os.environ['BOT_TOKEN'])
