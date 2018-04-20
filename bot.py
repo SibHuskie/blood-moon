@@ -91,15 +91,10 @@ async def kick(ctx, userName: discord.Member = None, *, args = None):
 @bot.command()
 async def info(ctx):
     embed = discord.Embed(title="Blood Moon", description="Blood in the sky", color=0xeee657)
-
-    # give info about you here
     embed.add_field(name="Author", value="Huskie#3006")
-
     # Shows the number of servers the bot is member of.
     embed.add_field(name="Server count", value=f"{len(bot.guilds)}")
-
     # give users a link to invite thsi bot to their server
     embed.add_field(name="Invite", value="[https://discord.gg/DndZZbu](https://discordapp.com/oauth2/authorize?client_id=436479659807473674&permissions=8&scope=bot%22)
-
     await ctx.send(embed=embed)
 client.run(os.environ['BOT_TOKEN'])
