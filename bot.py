@@ -290,4 +290,32 @@ async def calculator(ctx, *, args=None):
         answer = str(eval(args))
         msg.add_field(name=":fax: Calculator", value= "`Problem: {}`\n \n`Answer: {}`".format(args, answer), inline=True)
     await client.say(embed=msg)
+    
+# %warn <user> <reason>
+@client.command(pass_context=True)
+async def warn(ctx, userName: discord.Member = None, *, args = None):
+    helper_role = discord.utils.get(ctx.message.server.roles, name='CHAT MODS')
+    mod_role = discord.utils.get(ctx.message.server.roles, name='MOD')
+    admin_role = discord.utils.get(ctx.message.server.roles, name='ADMIN')
+    manager_role = discord.utils.get(ctx.message.server.roles, name='CO-FOUNDERS')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='FOUNDERS')
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    msg2 = discord.Embed(colour=0x9b0019, description= "")
+    msg2.title = ""
+    msg2.set_footer(text=footer_text)
+    if helper_role in author.roles or mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
+        if userName == None or args == None:
+            msg.add_field(name=":octagonal_sign: ", value="`%warn <user> <reason>`")
+            await client.say(embed=msg)
+        else:
+                msg2.add_field(name=":pencil: ", value="`You have been warned by {} in Eclipse!`\n`Reason: {}`".format(author.display_name, args))
+                msg.add_field(name=":pencil: ", value="`{} warned {}!`\n`Reason: {}`".format(author.display_name, userName.display_name, args))
+                await client.say(embed=msg)
+                await client.send_message(userName, embed=msg2)
+    else:
+        msg.add_field(name=":octagonal_sign: ", value="`This command can only be used by staff!`")
+        await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
