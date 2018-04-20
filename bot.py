@@ -143,8 +143,8 @@ async def unban(ctx, userID = None):
     
 # %say <text>
 @client.command(pass_context=True)
-async def echo(ctx, *, args=None): 
-    staff_role = discord.utils.get(ctx.message.server.roles, name='Staff')
+async def say(ctx, *, args=None): 
+    staff_role = discord.utils.get(ctx.message.server.roles, name='STAFF')
     author = ctx.message.author
     msg = discord.Embed(colour=0x9b0019, description= "")
     msg.title = ""
