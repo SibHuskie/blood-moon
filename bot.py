@@ -159,4 +159,20 @@ async def echo(ctx, *, args=None):
     else:
         msg.add_field(name=":warning: ", value="`This command can only be used by Staff!`")
         await client.say(embed=msg)
+        
+# %penis
+@client.command(pass_context=True)
+async def dicklength(ctx):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    choice = random.randint(0, 12)
+    if choice == 0 or choice == 1:
+        msg.add_field(name=":straight_ruler: ", value="`I'm sorry, {}, you currently do not have a dick.`".format(author.display_name))
+    elif choice == 10 or choice == 12:
+        msg.add_field(name=":straight_ruler: ", value="`Error! Currently {}'s dick is too big for me to take the length of it.`".format(author.display_name))
+    else:
+        msg.add_field(name=":straight_ruler: ", value="`Currently, {}'s dick is {}cm long.`".format(author.display_name, random.randint(1, 101)))
+    await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
