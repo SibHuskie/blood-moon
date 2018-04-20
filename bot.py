@@ -175,4 +175,13 @@ async def penis(ctx):
     else:
         msg.add_field(name=":straight_ruler: ", value="`Currently, {}'s dick is {}cm long.`".format(author.display_name, random.randint(1, 14)))
     await client.say(embed=msg)
+    
+# Member Count
+@client.command(pass_context=True)
+async def mc(ctx):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ":closed_book: Member Count :closed_book:"
+    msg.add_field(name="MEMBERS", value=(len(ctx.message.server.members)), inline=True)
+    await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
