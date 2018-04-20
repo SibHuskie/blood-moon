@@ -162,7 +162,7 @@ async def echo(ctx, *, args=None):
         
 # %penis
 @client.command(pass_context=True)
-async def dicklength(ctx):
+async def penis(ctx):
     author = ctx.message.author
     msg = discord.Embed(colour=0x9b0019, description= "")
     msg.title = ""
