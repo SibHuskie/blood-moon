@@ -173,6 +173,6 @@ async def penis(ctx):
     elif choice == 10 or choice == 12:
         msg.add_field(name=":straight_ruler: ", value="`Error! Currently {}'s dick is too big for me to take the length of it.`".format(author.display_name))
     else:
-        msg.add_field(name=":straight_ruler: ", value="`Currently, {}'s dick is {}cm long.`".format(author.display_name, random.randint(1, 101)))
+        msg.add_field(name=":straight_ruler: ", value="`Currently, {}'s dick is {}cm long.`".format(author.display_name, random.randint(1, 14)))
     await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
