@@ -167,13 +167,13 @@ async def penis(ctx):
     msg = discord.Embed(colour=0x9b0019, description= "")
     msg.title = ""
     msg.set_footer(text=footer_text)
-    choice = random.randint(0, 12)
-    if choice == 0 or choice == 1:
+    choice = random.randint(0, 20)
+    if choice == 0 or choice == 4:
         msg.add_field(name=":straight_ruler: ", value="`I'm sorry, {}, you currently do not have a dick.`".format(author.display_name))
-    elif choice == 10 or choice == 12:
+    elif choice == 18 or choice == 20:
         msg.add_field(name=":straight_ruler: ", value="`Error! Currently {}'s dick is too big for me to take the length of it.`".format(author.display_name))
     else:
-        msg.add_field(name=":straight_ruler: ", value="`Currently, {}'s dick is {}cm long.`".format(author.display_name, random.randint(1, 14)))
+        msg.add_field(name=":straight_ruler: ", value="`Currently, {}'s dick is {} inches long.`".format(author.display_name, random.randint(4, 18)))
     await client.say(embed=msg)
     
 # Member Count
