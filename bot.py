@@ -87,4 +87,31 @@ async def kick(ctx, userName: discord.Member = None, *, args = None):
     else:
         msg.add_field(name=":octagonal_sign: ", value="`This command can only be used by Moderators, Administrators, Co-Founders and Founders!`")
     await client.say(embed=msg)
+    
+# %ban <user> [reason]
+@client.command(pass_context=True)
+async def ban(ctx, userName: discord.Member = None, *, args = None):
+    helper_role = discord.utils.get(ctx.message.server.roles, name='CHAT MODS')
+    mod_role = discord.utils.get(ctx.message.server.roles, name='MOD')
+    admin_role = discord.utils.get(ctx.message.server.roles, name='ADMIN')
+    manager_role = discord.utils.get(ctx.message.server.roles, name='CO-FOUNDERS')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='FOUNDERS')
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
+        if userName == None:
+            msg.add_field(name=":warning: ", value="`%ban <user> [reason]`")
+        elif helper_role in userName.roles or mod_role in userName.roles or admin_role in userName.roles or manager_role in userName.roles or owner_role in userName.roles:
+            msg.add_field(name=":warning: ", value="`You can't ban other staff!`")
+        elif args == None:
+            msg.add_field(name=":hammer: Ban Hammer", value="`{} banned {}!`\n`Reason: ?`".format(author.display_name, userName.display_name))
+            await client.ban(userName)
+        else:
+            msg.add_field(name=":hammer: Ban Hammer", value="`{} banned {}!`\n`Reason: {}`".format(author.display_name, userName.display_name, args))
+            await client.ban(userName)
+    else:
+        msg.add_field(name=":warning: ", value="`This command can only be used by Moderators, Admins, Co Founders and Founders!`")
+    await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
