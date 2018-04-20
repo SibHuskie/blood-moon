@@ -60,4 +60,31 @@ async def tempmute(ctx, userName: discord.Member = None, time: int = None, *, ar
     else:
         msg.add_field(name=":warning: ", value="`This command can only be used by staff!`")
         await client.say(embed=msg)
+
+# <kick <user> [reason]
+@client.command(pass_context=True)
+async def kick(ctx, userName: discord.Member = None, *, args = None):
+    helper_role = discord.utils.get(ctx.message.server.roles, name='CHAT MODS')
+    mod_role = discord.utils.get(ctx.message.server.roles, name='MOD')
+    admin_role = discord.utils.get(ctx.message.server.roles, name='ADMIN')
+    manager_role = discord.utils.get(ctx.message.server.roles, name='CO-FOUNDERS')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='FOUNDERS')
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x871485, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
+        if userName == None:
+            msg.add_field(name=":warning: ", value="`<kick (user) (reason)`")
+        elif helper_role in userName.roles or mod_role in userName.roles or admin_role in userName.roles or manager_role in userName.roles or owner_role in userName.roles:
+            msg.add_field(name=":warning: ", value="`You can't kick other staff!`")
+        elif args == None:
+            msg.add_field(name=":boot: Kicker", value="`{} kicked {}!`\n`Reason: ?`".format(author.display_name, userName.display_name))
+            await client.kick(userName)
+        else:
+            msg.add_field(name=":boot: Kicker", value="`{} kicked {}!`\n`Reason: {}`".format(author.display_name, userName.display_name, args))
+            await client.kick(userName)
+    else:
+        msg.add_field(name=":octagonal_sign: ", value="`This command can only be used by Moderators, Administrators, Co Owners and Owners!`")
+    await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
