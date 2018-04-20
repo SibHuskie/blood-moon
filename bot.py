@@ -247,4 +247,47 @@ huglinks = ["https://i.imgur.com/yE2RnXK.gif",
             "https://i.imgur.com/hRYXNKX.gif",
             "https://i.imgur.com/br3bGQc.gif",
             "https://i.imgur.com/IcNGAQD.gif"]
+
+# %eightball <yes or no question>
+@client.command(pass_context=True)
+async def eightball(ctx, *, args=None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if args == None:
+        msg.add_field(name="warning: ", value="`%eightball (Y/N Question)`")
+    else:
+        msg.add_field(name="Magic Eight Ball", value=":question: **Question:**\n`{}`\n \n:8ball: **Answer:**\n`{}`".format(args, random.choice(eightballmsgs)))
+    await client.say(embed=msg)
+    print("============================================================")
+    print("<eightball <yes or no question>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+
+eightballmsgs = ["Yes!",
+                 "No!",
+                 "Probably!",
+                 "Most likely!",
+                 "Probably not!",
+                 "Definitely!",
+                 "Definitely not!",
+                 "Of course!",
+                 "Of course not!",
+                 "WTF no!",
+                 "Hell yeah!"]
+
+# %calculator <math problem>
+@client.command(pass_context=True)
+async def calculator(ctx, *, args=None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if args == None:
+        msg.add_field(name=":warning: ", value="`%calculator (Math Problem)`")
+    else:
+        answer = str(eval(args))
+        msg.add_field(name=":fax: Calculator", value= "`Problem: {}`\n \n`Answer: {}`".format(args, answer), inline=True)
+    await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
