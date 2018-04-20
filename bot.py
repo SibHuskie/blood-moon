@@ -213,4 +213,38 @@ async def userinfo(ctx, userName: discord.Member = None):
             msg.add_field(name="TOP ROLE:", value=(userName.top_role), inline=True)
             msg.add_field(name="VOICE CHANNEL:", value=(userName.voice_channel), inline=True)
     await client.say(embed=msg)
+    
+# <hug <user>
+@client.command(pass_context=True)
+async def hug(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`%hug (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(huglinks)))
+        msg.add_field(name=":new_moon: Emotes :new_moon:", value="`{}, you got a hug from {}!`".format(userName.display_name, author.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}hug <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+
+huglinks = ["https://i.imgur.com/yE2RnXK.gif",
+            "https://i.imgur.com/R9sYxk8.gif",
+            "https://i.imgur.com/iLBEoKv.gif",
+            "https://i.imgur.com/cc554e8.gif",
+            "https://i.imgur.com/1dqkjHe.gif",
+            "https://i.imgur.com/Ph8GTqg.gif",
+            "https://i.imgur.com/G6EnOxd.gif",
+            "https://i.imgur.com/ZxwHn5Y.gif",
+            "https://i.imgur.com/movPIsP.gif",
+            "https://i.imgur.com/tKlfSgo.gif",
+            "https://i.imgur.com/ICg9nCr.gif",
+            "https://i.imgur.com/yC95DC2.gif",
+            "https://i.imgur.com/hRYXNKX.gif",
+            "https://i.imgur.com/br3bGQc.gif",
+            "https://i.imgur.com/IcNGAQD.gif"]
 client.run(os.environ['BOT_TOKEN'])
