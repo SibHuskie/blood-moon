@@ -5,7 +5,6 @@ import asyncio
 import random
 import time
 import os
-import music
 
 client = commands.Bot(command_prefix="%")
 footer_text = "Eclipse"
@@ -81,7 +80,7 @@ async def mute(ctx, userName: discord.Member = None, args = None):
             await client.say(embed.msg)
         elif helper_role in userName.roles or mod_role in userName.roles or admin_role in userName.roles or manager_role in userName.roles or owner_role in userName.roles:
              msg.add_field(name=":warning: ", value="`You can't punish other staff!`")
-            await client.say(embed=msg)
+             await client.say(embed=msg)
         elif punished_role in userName.roles:
             msg.add_field(name=":warning: ", value="`That user is already punished!`")
             await client.say(embed=msg)
