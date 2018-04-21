@@ -493,5 +493,4 @@ spanklinks = ["https://i.imgur.com/dt1TTQu.gif",
               "https://i.imgur.com/xLOoHKP.gif",
               "https://i.imgur.com/UShywVv.gif",
               "https://i.imgur.com/RE3mnrA.gif"]
-
 client.run(os.environ['BOT_TOKEN'])
