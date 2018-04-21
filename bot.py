@@ -17,21 +17,6 @@ async def on_ready():
     print("---------------")
     await client.change_presence(game=discord.Game(name='with Earth'))
 
-# %help
-client.remove_command('help')
-@client.command(pass_context=True)
-async def help(ctx):
-    author = ctx.message.author
-    msg = discord.Embed(colour=0x9b0019, description= "")
-    msg.title = ""
-    msg.add_field(name=":incoming_envelope: ", value="`You can see all commands in the #eclipse-commands channel!`")
-    msg.set_footer(text=footer_text)
-    await client.say(embed=msg)
-    print("============================================================")
-    print("}help")
-    print("{} ### {}".format(author, author.id))
-    print("============================================================")
-    
 # %tempmute <user> <time> [reason]
 @client.command(pass_context=True)
 async def tempmute(ctx, userName: discord.Member = None, time: int = None, *, args = None):
