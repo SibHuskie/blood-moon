@@ -403,4 +403,29 @@ spanklinks = ["https://i.imgur.com/dt1TTQu.gif",
               "https://i.imgur.com/xLOoHKP.gif",
               "https://i.imgur.com/UShywVv.gif",
               "https://i.imgur.com/RE3mnrA.gif"]
+
+# %slap <user>
+@client.command(pass_context=True)
+async def slap(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`}slap <user>`")
+    else:
+        msg.set_image(url="{}".format(random.choice(slaplinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{}, you got slapped by {}! :3`".format(userName.display_name, author.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}slap <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+
+slaplinks = ["https://i.imgur.com/EAF42MG.gif",
+             "https://i.imgur.com/tLTT9Q4.gif",
+             "https://i.imgur.com/tEWjg7v.gif",
+             "https://i.imgur.com/MlkLTjv.gif",
+             "https://i.imgur.com/hoTYJZP.gif",
+             "https://i.imgur.com/Pthhs3Y.gif"]
 client.run(os.environ['BOT_TOKEN'])
