@@ -378,4 +378,29 @@ kisslinks = ["https://i.imgur.com/0Ri9sfq.gif",
              "https://i.imgur.com/TACVpH9.gif",
              "https://i.imgur.com/opiHLtc.gif",
              "https://i.imgur.com/LylJAea.gif"]
+
+# <spank <user>
+@client.command(pass_context=True)
+async def spank(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`%spank (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(spanklinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{} spanked {}!`".format(author.display_name, userName.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}spank <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+
+spanklinks = ["https://i.imgur.com/dt1TTQu.gif",
+              "https://i.imgur.com/ZsTbDvh.gif",
+              "https://i.imgur.com/4LHwG60.gif",
+              "https://i.imgur.com/xLOoHKP.gif",
+              "https://i.imgur.com/UShywVv.gif",
+              "https://i.imgur.com/RE3mnrA.gif"]
 client.run(os.environ['BOT_TOKEN'])
