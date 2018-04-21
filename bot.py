@@ -344,4 +344,38 @@ licklinks = ["https://i.imgur.com/QkRz1GJ.gif",
              "https://i.imgur.com/4QIlJtC.gif",
              "https://i.imgur.com/LptJIi1.gif",
              "https://i.imgur.com/THGgRJz.gif"]
+
+# <kiss <user>
+@client.command(pass_context=True)
+async def kiss(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`%kiss (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(kisslinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{}, you got kissed by {}!`".format(userName.display_name, author.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}kiss <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+
+kisslinks = ["https://i.imgur.com/0Ri9sfq.gif",
+             "https://i.imgur.com/EMdpmXW.gif",
+             "https://i.imgur.com/Y9iLoiv.gif",
+             "https://i.imgur.com/ZlqZy8S.gif",
+             "https://i.imgur.com/ySav1IQ.gif",
+             "https://i.imgur.com/ZGfrn2d.gif",
+             "https://i.imgur.com/glwWeUl.gif",
+             "https://i.imgur.com/j5hDl7V.gif",
+             "https://i.imgur.com/w7mVYty.gif",
+             "https://i.imgur.com/FJ5bckO.gif",
+             "https://i.imgur.com/KqVmVU7.gif",
+             "https://i.imgur.com/EM1C9a6.gif",
+             "https://i.imgur.com/TACVpH9.gif",
+             "https://i.imgur.com/opiHLtc.gif",
+             "https://i.imgur.com/LylJAea.gif"]
 client.run(os.environ['BOT_TOKEN'])
