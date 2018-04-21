@@ -466,4 +466,46 @@ async def report(ctx, userName: discord.Member = None, *, args = None):
     print("%report <user> <reason>")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
+    
+# %stare <user>
+@client.command(pass_context=True)
+async def stare(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`%stare (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(starelinks)))
+        msg.add_field(name=":handshake: Interactions", value="`{}, {} is staring at you! :3`".format(userName.display_name, author.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}stare <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+starelinks = ["https://i.imgur.com/f8rFNH0.gif",
+              "https://i.imgur.com/ACCQDj4.gif",
+              "https://i.imgur.com/1Co1i9t.gif",
+              "https://i.imgur.com/uPZHQxV.gif",
+              "https://i.imgur.com/wXQLAb3.gif",
+              "https://i.imgur.com/hY7ZngK.gif"]
+
+# %rate <text>
+@client.command(pass_context=True)
+async def rate(ctx, *, args = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if args == None:
+        msg.add_field(name=":warning: ", value="`%rate (text)`")
+    else:
+        msg.add_field(name=":scales:", value="`I'd rate {} a {}/10`".format(args, random.randint(0, 11)))
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}rate <text>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
