@@ -734,10 +734,41 @@ async def purge(ctx, number: int = None):
             else:
                 msg.add_field(name=":wastebasket: ", value="`{} deleted {} message(s)!`".format(author.display_name, len(deleted)))
     else:
-        msg.add_field(name=":octagonal_sign: ", value="`This command can only be used by staff!`")
+        msg.add_field(name=":warning: ", value="`This command can only be used by staff!`")
     await client.say(embed=msg)
     print("============================================================")
     print("}purge <number>")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
+    
+# %nick <user> [nickname]
+@client.command(pass_context=True)
+async def nick(ctx, userName: discord.Member = None, *, args = None):
+    helper_role = discord.utils.get(ctx.message.server.roles, name='CHAT MODS')
+    mod_role = discord.utils.get(ctx.message.server.roles, name='MOD')
+    admin_role = discord.utils.get(ctx.message.server.roles, name='ADMIN')
+    manager_role = discord.utils.get(ctx.message.server.roles, name='CO-FOUNDERS')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='FOUNDERS')
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if helper_role in author.roles or mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
+        if userName == None:
+            msg.add_field(name=":warning: ", value="`%nick (user) (nickname)`")
+        elif args == None:
+            nickname = args
+            await client.change_nickname(userName, nickname)
+            msg.add_field(name=":label: ", value="`{} removed {}'s nickname!`".format(author.display_name, userName.display_name))
+        else:
+            nickname = args
+            msg.add_field(name=":label: ", value="`{} changed {}'s nickname to {}!`".format(author.display_name, userName.display_name, args))
+            await client.change_nickname(userName, nickname)
+    else:
+        msg.add_field(name=":warning: ", value="`This command can only be used by staff!`")
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}nick <user> <nickname>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================"
 client.run(os.environ['BOT_TOKEN'])
