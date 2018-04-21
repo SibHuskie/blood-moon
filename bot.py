@@ -602,4 +602,30 @@ roasts = ["I saw a piece of shit today. It reminded me of you.",
           "were you born this stupid or did you take lessons?",
           "calling you an idiot would be an insult to all stupid people.",
           "I just stepped in something that was smarter than you... and smelled better too."]
+
+# %nom <user>
+@client.command(pass_context=True)
+async def nom(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`%nom (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(nomlinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{}, {} nommed you! :3`".format(userName.display_name, author.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}nom <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+nomlinks = ["https://i.imgur.com/E1eQPfu.gif",
+            "https://i.imgur.com/UUZY3Rb.gif",
+            "https://i.imgur.com/Zd6fIpA.gif",
+            "https://i.imgur.com/i2NaBS7.gif",
+            "https://i.imgur.com/Up5J6Nn.gif",
+            "https://i.imgur.com/J5MLku7.gif",
+            "https://i.imgur.com/7yYgZXE.gif"]
 client.run(os.environ['BOT_TOKEN'])
