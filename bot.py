@@ -637,7 +637,7 @@ async def bite(ctx, userName: discord.Member = None):
     msg.title = ""
     msg.set_footer(text=footer_text)
     if userName == None:
-        msg.add_field(name=":octagonal_sign: ", value="`%bite (user)`")
+        msg.add_field(name=":warning: ", value="`%bite (user)`")
     else:
         msg.set_image(url="{}".format(random.choice(bitelinks)))
         msg.add_field(name=":tongue: Emotes :tongue:", value="`{}, you got bitten by {}! :3`".format(userName.display_name, author.display_name), inline=True)
@@ -651,4 +651,24 @@ bitelinks = ["https://i.imgur.com/E0jIIa9.gif",
              "https://i.imgur.com/Nvkw6hN.gif",
              "https://i.imgur.com/wr7l06j.gif",
              "https://i.imgur.com/uce91VI.gif"]
+
+# %cookie <user> <number>
+@client.command(pass_context=True)
+async def chocolate(ctx, userName: discord.Member = None, number: int = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None or number == None:
+        msg.add_field(name=":warning: ", value="`%cookie (user) (number)`")
+    else:
+        if number > 100:
+            msg.add_field(name=":warning: ", value="`You can't give over 100 cookies to someone! Save some for yourself!`")
+        else:
+            msg.add_field(name=":smiley: ", value="`{} gave {}` :cookie: `to {}!`\n`Be like {}!`".format(author.display_name, number, userName.display_name, author.display_name))
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}cookie <user> <number>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
