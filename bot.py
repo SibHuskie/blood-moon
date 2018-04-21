@@ -654,7 +654,7 @@ bitelinks = ["https://i.imgur.com/E0jIIa9.gif",
 
 # %cookie <user> <number>
 @client.command(pass_context=True)
-async def chocolate(ctx, userName: discord.Member = None, number: int = None):
+async def cookie(ctx, userName: discord.Member = None, number: int = None):
     author = ctx.message.author
     msg = discord.Embed(colour=0x9b0019, description= "")
     msg.title = ""
