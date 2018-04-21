@@ -545,4 +545,61 @@ async def ship(ctx, args1 = None, args2 = None):
     print("}ship <user1> <user2>")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
+    
+# %roast <user>
+@client.command(pass_context=True)
+async def roast(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`%roast (user)`")
+    else:
+        msg.add_field(name=":fire: Roast Machine :fire:", value="`{}, {}`".format(userName.display_name, random.choice(roasts)))
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}roast <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+roasts = ["I saw a piece of shit today. It reminded me of you.",
+          "your face is a physical weapon.",
+          "I know you from somewhere. Oh yea, I see you in the trashcan."
+          "don't worry, you're not adopted... yet. We still haven't found anyone who wants you.",
+          "unless your name is 'Google', stop acting like you know everything.",
+          "if I wanted to kill myself I would climb up your ego and jump in your IQ",
+          "you are so stupid that you got hit by a parked car.",
+          "you're so fat that when god created light, you were asked to move out of the way.",
+          "I heard you were taken to a dog show and you won.",
+          "you suck so much, I can use you as a vacumcleaner.",
+          "maybe you should stop making fun of others just to get attention, cause the world doesn't rotate around your crap looking ass.",
+          "try not to spit when you talk, we don't need a public shower here.",
+          "you remind me of Zero, eew.",
+          "I can't breathe when I see you... cause I'm suffocating of your bullshit.",
+          "your mom is twice the man you will ever be.",
+          "you have the right to remain silent, cause what ever you say will be stupid anyways.",
+          "the only thing you are good at is being a cunt.",
+          "it's hard for you isn't it? Not to be a dick.",
+          "it's hard to ignore you, mostly cause you smell like shit.",
+          "you must've fallen from Mars, cause you clearly can't understand anything happening around you.",
+          "did you fall from Heaven? Cause so did Satan.",
+          "you're so ugly, you went to an ugly competition and they said 'No professionals allowed!'.",
+          "you really shouldn't try cooking, cause the last time you did, it ended with 3 houses being on fire.",
+          "did Satan send you to kill people? Cause your smell is killing me.",
+          "I'd give you a nasty look but you've already got one.",
+          "if laughter is the best medicine, your face must be curing the world.",
+          "the only way you'll ever get laid is if you crawl up a chicken's ass and wait.",
+          "scientists say the universe is made up of neutrons, protons and electrons. They forgot to mention morons.",
+          "your family tree must be a cactus because everyone on it is a prick.",
+          "someday you'll go far... and I hope you stay there.",
+          "save your breath, you'll need it to blow your date.",
+          "the zoo called. They're wondering how you got out of your cage?",
+          "you have something on your chin... no, the 3rd one down.",
+          "thought of you today. It reminded me to take the garbage out.",
+          "you're so ugly when you look in the mirror, your reflection looks away.",
+          "it's better to let someone think you're stupid than open your mouth and prove it.",
+          "were you born this stupid or did you take lessons?",
+          "calling you an idiot would be an insult to all stupid people.",
+          "I just stepped in something that was smarter than you... and smelled better too."]
 client.run(os.environ['BOT_TOKEN'])
