@@ -443,4 +443,27 @@ slaplinks = ["https://i.imgur.com/EAF42MG.gif",
              "https://i.imgur.com/MlkLTjv.gif",
              "https://i.imgur.com/hoTYJZP.gif",
              "https://i.imgur.com/Pthhs3Y.gif"]
+
+# %report <user> <reason>
+@client.command(pass_context=True)
+async def report(ctx, userName: discord.Member = None, *, args = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    msg2 = discord.Embed(colour=0x9b0019, description= "")
+    msg2.title = ""
+    msg2.set_footer(text=footer_text)
+    if userName == None or args == None:
+        msg.add_field(name=":warning: ", value="`%report <user> <reason>`")
+    else:
+        msg.add_field(name=":clipboard: REPORT", value="`{} has reported {}!`".format(author.display_name, userName.display_name))
+        msg2.add_field(name=":clipboard: REPORT", value="`Reporter:`\n`{} ### {}`\n`Reported:`\n`{} ### {}`\n`Reason:`\n`{}`".format(author, author.id, userName, userName.id, args))
+        channel = client.get_channel('437169979662663680')
+        await client.send_message(channel, embed=msg2)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("%report <user> <reason>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
