@@ -628,4 +628,27 @@ nomlinks = ["https://i.imgur.com/E1eQPfu.gif",
             "https://i.imgur.com/Up5J6Nn.gif",
             "https://i.imgur.com/J5MLku7.gif",
             "https://i.imgur.com/7yYgZXE.gif"]
+
+# %bite <user>
+@client.command(pass_context=True)
+async def bite(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":octagonal_sign: ", value="`%bite (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(bitelinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{}, you got bitten by {}! :3`".format(userName.display_name, author.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}bite <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+bitelinks = ["https://i.imgur.com/E0jIIa9.gif",
+             "https://i.imgur.com/Nvkw6hN.gif",
+             "https://i.imgur.com/wr7l06j.gif",
+             "https://i.imgur.com/uce91VI.gif"]
 client.run(os.environ['BOT_TOKEN'])
