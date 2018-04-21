@@ -316,6 +316,32 @@ async def warn(ctx, userName: discord.Member = None, *, args = None):
                 await client.say(embed=msg)
                 await client.send_message(userName, embed=msg2)
     else:
-        msg.add_field(name=":octagonal_sign: ", value="`This command can only be used by staff!`")
+        msg.add_field(name=":warning: ", value="`This command can only be used by staff!`")
         await client.say(embed=msg)
+        
+# <lick <user>
+@client.command(pass_context=True)
+async def lick(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`%lick <user>`")
+    else:
+        msg.set_image(url="{}".format(random.choice(licklinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{} licked {}!`".format(author.display_name, userName.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}lick <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+
+licklinks = ["https://i.imgur.com/QkRz1GJ.gif",
+             "https://i.imgur.com/ObCPKYV.gif",
+             "https://i.imgur.com/7fWrYqd.gif",
+             "https://i.imgur.com/O8CNVUL.gif",
+             "https://i.imgur.com/4QIlJtC.gif",
+             "https://i.imgur.com/LptJIi1.gif",
+             "https://i.imgur.com/THGgRJz.gif"]
 client.run(os.environ['BOT_TOKEN'])
