@@ -17,6 +17,11 @@ async def on_ready():
     print("---------------")
     await client.change_presence(game=discord.Game(name='with Earth'))
 
+# %help
+@client.command(pass_context=True)
+async def help(ctx):
+    await client.say("There is a list of commands in #eclipse-commands that you can check out!")
+    
 # %tempmute <user> <time> [reason]
 @client.command(pass_context=True)
 async def tempmute(ctx, userName: discord.Member = None, time: int = None, *, args = None):
