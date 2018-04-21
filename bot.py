@@ -478,7 +478,7 @@ async def stare(ctx, userName: discord.Member = None):
         msg.add_field(name=":warning: ", value="`%stare (user)`")
     else:
         msg.set_image(url="{}".format(random.choice(starelinks)))
-        msg.add_field(name=":handshake: Interactions", value="`{}, {} is staring at you! :3`".format(userName.display_name, author.display_name), inline=True)
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{}, {} is staring at you! :3`".format(userName.display_name, author.display_name), inline=True)
     await client.say(embed=msg)
     print("============================================================")
     print("}stare <user>")
