@@ -770,5 +770,67 @@ async def nick(ctx, userName: discord.Member = None, *, args = None):
     print("============================================================")
     print("}nick <user> <nickname>")
     print("{} ### {}".format(author, author.id))
-    print("============================================================"
+    print("============================================================")
+
+# %giverole <user> <role name>
+@client.command(pass_context=True)
+async def giverole(ctx, userName: discord.Member = None, *, args = None):
+    admin_role = discord.utils.get(ctx.message.server.roles, name='ADMIN')
+    manager_role = discord.utils.get(ctx.message.server.roles, name='CO-FOUNDERS')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='FOUNDERS')
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    serverroles = [ctx.message.server.roles]
+    if admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
+        if userName == None or args == None:
+            msg.add_field(name=":warning: ", value="`%giverole (user) (role name)`")
+        else:
+            rolename2 = discord.utils.get(ctx.message.server.roles, name='{}'.format(args))
+            if rolename2 == None:
+                msg.add_field(name=":warning: ", value="`The specified role has not been found! Sorry I'm case sensitive...`")
+            elif author.top_role == rolename2 or author.top_role < rolename2:
+                msg.add_field(name=":warning: ", value="`You cannot give a role that is the same or higher than your top role!`")
+            else:
+                await client.add_roles(userName, rolename2)
+                msg.add_field(name=":inbox_tray: ", value="`{} gave {} to {}!`".format(author.display_name, args, userName.display_name))
+    else:
+        msg.add_field(name=":warning: ", value="`This command can only be used by Adminis, Co-Founders and Founders!`")
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}giverole <user> <role name>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+# %takerole <user> <role name>
+@client.command(pass_context=True)
+async def takerole(ctx, userName: discord.Member = None, *, args = None):
+    admin_role = discord.utils.get(ctx.message.server.roles, name='ADMIN')
+    manager_role = discord.utils.get(ctx.message.server.roles, name='CO-FOUNDERS')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='FOUNDERS')
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    serverroles = [ctx.message.server.roles]
+    if admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
+        if userName == None or args == None:
+            msg.add_field(name=":warning: ", value="`%takerole (user) (role name)`")
+        else:
+            rolename2 = discord.utils.get(ctx.message.server.roles, name='{}'.format(args))
+            if rolename2 == None:
+                msg.add_field(name=":warning: ", value="`The specified role has not been found! Sorry I'm case sensitive...`")
+            elif author.top_role == rolename2 or author.top_role < rolename2:
+                msg.add_field(name=":warning: ", value="`You cannot remove a role that is the same or higher than your top role!`")
+            else:
+                await client.remove_roles(userName, rolename2)
+                msg.add_field(name=":outbox_tray: ", value="`{} removed {} from {}!`".format(author.display_name, args, userName.display_name))
+    else:
+        msg.add_field(name=":octagonal_sign: ", value="`This command can only be used by Adminis, Co-Founders and Founders!`")
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}takerole <user> <role name>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
