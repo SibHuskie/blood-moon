@@ -15,7 +15,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print("---------------")
-    await client.change_presence(game=discord.Game(name='with Earth'))
+    await client.change_presence(game=discord.Game(name='check #eclipse-commands'))
 
 # %tempmute <user> <time> [reason]
 @client.command(pass_context=True)
