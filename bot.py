@@ -804,4 +804,29 @@ async def takerole(ctx, userName: discord.Member = None, *, args = None):
     print("}takerole <user> <role name>")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
+    
+# %cuddle <user>
+@client.command(pass_context=True)
+async def cuddle(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`%cuddle (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(cuddlelinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{}, you got a cuddle from {}! :3`".format(userName.display_name, author.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}cuddle <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+cuddlelinks = ["https://i.imgur.com/GWNWcLH.gif",
+               "https://i.imgur.com/i3Eqqgz.gif",
+               "https://i.imgur.com/GpFk6fE.gif",
+               "https://i.imgur.com/mc3Z7wf.gif",
+               "https://i.imgur.com/N5JYB5r.gif",
+               "https://i.imgur.com/PGp8JYq.gif"]
 client.run(os.environ['BOT_TOKEN'])
