@@ -832,7 +832,7 @@ cuddlelinks = ["https://i.imgur.com/GWNWcLH.gif",
 
 # %suggest <text>
 @client.command(pass_context=True)
-async def report(args = None):
+async def report(ctx, userName: discord.Member = None, args = None):
     author = ctx.message.author
     msg = discord.Embed(colour=0x9b0019, description= "")
     msg.title = ""
