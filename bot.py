@@ -829,4 +829,27 @@ cuddlelinks = ["https://i.imgur.com/GWNWcLH.gif",
                "https://i.imgur.com/mc3Z7wf.gif",
                "https://i.imgur.com/N5JYB5r.gif",
                "https://i.imgur.com/PGp8JYq.gif"]
+
+# %suggest <text>
+@client.command(pass_context=True)
+async def report(args = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    msg2 = discord.Embed(colour=0x9b0019, description= "")
+    msg2.title = ""
+    msg2.set_footer(text=footer_text)
+    if userName == None or args == None:
+        msg.add_field(name=":warning: ", value="`%suggest (suggestion)`")
+    else:
+        msg.add_field(name=":clipboard: Suggestion", value="`{} has made a suggestion!`".format(author.display_name))
+        msg2.add_field(name=":clipboard: Suggestion", value="`Brain Stormer:`\n`{} ### {}`\n`Suggested:`\n`{} ### {}`\n`Reason:`\n`{}`".format(author, author.id, args))
+        channel = client.get_channel('437169979662663680')
+        await client.send_message(channel, embed=msg2)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("%report <user> <reason>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
