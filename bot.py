@@ -167,13 +167,13 @@ async def penis(ctx):
     msg = discord.Embed(colour=0x9b0019, description= "")
     msg.title = ""
     msg.set_footer(text=footer_text)
-    choice = random.randint(0, 20)
-    if choice == 0 or choice == 4:
+    choice = random.randint(0, 14)
+    if choice == 0 or choice == 2:
         msg.add_field(name=":straight_ruler: ", value="`I'm sorry, {}, you currently do not have a dick.`".format(author.display_name))
-    elif choice == 18 or choice == 20:
+    elif choice == 13 or choice == 14:
         msg.add_field(name=":straight_ruler: ", value="`Error! Currently {}'s dick is too big for me to take the length of it.`".format(author.display_name))
     else:
-        msg.add_field(name=":straight_ruler: ", value="`Currently, {}'s dick is {} inches long.`".format(author.display_name, random.randint(4, 18)))
+        msg.add_field(name=":straight_ruler: ", value="`Currently, {}'s dick is {} inches long.`".format(author.display_name, random.randint(2, 13)))
     await client.say(embed=msg)
     
 # Member Count
@@ -829,4 +829,37 @@ cuddlelinks = ["https://i.imgur.com/GWNWcLH.gif",
                "https://i.imgur.com/mc3Z7wf.gif",
                "https://i.imgur.com/N5JYB5r.gif",
                "https://i.imgur.com/PGp8JYq.gif"]
+
+# %help
+client.remove_command('help')
+@client.command(pass_context=True)
+async def help(ctx):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.add_field(name=":incoming_envelope: ", value="`You can see all commands in the #eclipse-commands channel!`")
+    msg.set_footer(text=footer_text)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}help")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+# %gay
+@client.command(pass_context=True)
+async def gay(ctx):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0x9b0019, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if args == None:
+        msg.add_field(name=":warning: ", value="`%gay`")
+    else:
+        msg.add_field(name=":gay_pride_flag:", value="`I'd say {} is {}% gay`".format(args, random.randint(0, 110)))
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}gay")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
 client.run(os.environ['BOT_TOKEN'])
