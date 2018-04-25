@@ -861,13 +861,4 @@ async def gay(ctx):
     print("}gay")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
-    
- @commands.command()
-    async def intellect(self, ctx, *, msg:str):
-        """Me, an intellectual"""
-        await ctx.channel.trigger_typing()
-        intellectify = ""
-        for char in msg:
-            intellectify += random.choice([char.upper(), char.lower()])
-        await ctx.send(intellectify)
 client.run(os.environ['BOT_TOKEN'])
