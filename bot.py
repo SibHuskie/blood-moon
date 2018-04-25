@@ -872,4 +872,6 @@ async def on_message(message):
                 await client.send_message(message.channel, "Then talk...")
                 
 chat_filter = ["CHAT IS DEAD", "CHAT DEAD", "DEAD CHAT"]
+bypass_list = []
+
 client.run(os.environ['BOT_TOKEN'])
