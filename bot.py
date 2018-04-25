@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-from discord.ext.commands import Bot
 import logging
 import asyncio
 import random
@@ -862,16 +861,13 @@ async def gay(ctx):
     print("}gay")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
-
-@client.event
-async def on_message(message):
-    contents = message.content.split(" ") #contents is a list type
-    for word.upper() in chat_filter:
-        if not message.author.id in bypass_list:
-            try:
-                await client.send_message(message.channel, "Then talk...")
-                
-chat_filter = ["CHAT IS DEAD", "CHAT DEAD", "DEAD CHAT"]
-bypass_list = []
-
+    
+ @commands.command()
+    async def intellect(self, ctx, *, msg:str):
+        """Me, an intellectual"""
+        await ctx.channel.trigger_typing()
+        intellectify = ""
+        for char in msg:
+            intellectify += random.choice([char.upper(), char.lower()])
+        await ctx.send(intellectify)
 client.run(os.environ['BOT_TOKEN'])
